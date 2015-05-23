@@ -7,44 +7,27 @@
 ## to operate on these variables.
 ##
 ## cacheSolve() is called with the makeCacheMatrix-type matrix (mx);
-## some other routine will perform the conversion.
+## and returns the inverse (either from the cache or computed)
 ## 
 
 makeCacheMatrix <- function(x = matrix()) {
   ## Data Objects
-  origMatrix <- NULL
   inverse <- NULL
   
 ## Functions / Methods
-  setmatrix <- function(value) {
-    origMatrix <<- value
-  }
-  getmatrix <- function() {
-    origMatrix
-  }
   setcache <- function(value) {
     inverse <<- value
   }
   getcache <- function() {
-    ## Check if the origMatrix has been modified;
-    y <<- origMatrix
-    if (identical(x, y)) 
-      return (inverse)
-    else
-      return (NULL)
+    inverse
   }
-  list(setmatrix = setmatrix, getmatrix = getmatrix,
-       setcache = setcache,   getcache = getcache)
+  list(setcache = setcache,   getcache = getcache)
 }
 
 
 ## Write a short comment describing this function
 
 cacheSolve <- function(mx, ...) {
-  # create a the right object-type
-  #   mx <- makeCacheMatrix(x)
-  #   mx$setmatrix(x)
-  
   ## Return a matrix that is the inverse of 'x'
   tmp <- mx$getcache()
   # If value is found in the cache
